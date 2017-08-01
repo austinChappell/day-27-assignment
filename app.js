@@ -5,28 +5,6 @@ const mustacheExpress = require('mustache-express');
 
 const router = require('./routes/router');
 
-// let Object = {
-//   id,
-//   username,
-//   name,
-//   avatar,
-//   email,
-//   university,
-//   job,
-//   company,
-//   skills,
-//   phone,
-//   address:
-//   {
-//     street_num,
-//     street_name,
-//     city,
-//     state_or_province,
-//     postal_code,
-//     country
-//   }
-// };
-//
 app.engine('mustache', mustacheExpress());
 
 app.set('view engine', 'mustache');
@@ -86,7 +64,7 @@ app.get('/something/mongo/country/:value', (req, res) => {
 
 app.get('/something/mongo/skills/:value', (req, res) => {
   let value = req.params.value;
-  db.collection('users').find({ skills: { $elemMatch: { $eq:value } } }).toArray((err, results) => {
+  db.collection('users').find({ skills: value }).toArray((err, results) => {
     if (err) {
       console.log(err);
     } else {
