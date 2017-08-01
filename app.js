@@ -70,6 +70,33 @@ app.get('/something/mongo/employed', (req, res) => {
   });
 });
 
+app.get('/something/mongo/country/:value', (req, res) => {
+  let value = req.params.value;
+  db.collection('users').find({ 'address.country': value }).toArray((err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('results are:', results);
+      console.log('value is:', value);
+      let data = { users: results };
+      res.render('users', data);
+    };
+  });
+});
+
+app.get('/something/mongo/skills/:value', (req, res) => {
+  let value = req.params.value;
+  db.collection('users').find({ skills: { $elemMatch: { $eq:value } } }).toArray((err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(results);
+      let data = { users: results }
+      res.render('users', data);
+    };
+  });
+});
+
 app.get('/something/mongo/:id', (req, res) => {
   db.collection('users').find({ id: Number(req.params.id) }).toArray((err, results) => {
     if (err) {

@@ -13,7 +13,7 @@
       <div class="basic-info right">
         <h1 class="single-name">{{ name }}</h1>
         <p class="contact-info">
-          {{ #address.city }}{{ address.city }}, {{ /address.city }}{{ address.country }} |
+          {{ #address.city }}{{ address.city }}, {{ /address.city }}<a href="/something/mongo/country/{{ address.country }}">{{ address.country }}</a> |
           {{ #job }}
             {{ job }},
           {{ /job }}
@@ -35,7 +35,7 @@
         {{ /university }}
         <ul class="skills">
           {{ #skills }}
-          <li>{{ . }}</li>
+          <li><a href="/something/mongo/skills/{{ . }}">{{ . }}</a></li>
           {{ /skills }}
         </ul>
       </div>
