@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="/./style.css">
+  </head>
+  <body>
+    <div class="links">
+      <a href="/something/mongo/">All</a>
+      <a href="/something/mongo/unemployed">Unemployed</a>
+      <a href="/something/mongo/employed">Employed</a>
+    </div>
+    <div class="container">
+      {{ #users }}
+      <a href="/{{ id }}" class="user">
+        <img src="{{ avatar }}" alt="">
+        <h2>{{ name }}</h2>
+        {{ #job }}
+          <p>{{ job }}, {{ company }}</p>
+        {{ /job }}
+        {{ ^job }}
+          <p class="unemployed">Available for hire</p>
+        {{ /job }}
+      </a>
+      {{ /users }}
+    </div>
+  </body>
+</html>
